@@ -23,9 +23,10 @@ function App() {
     "Rp 5000000",
     "Rp 10000000",
   ];
-  let data: string[] | null = [];
+  let data: string[] = [];
   const [name, setName] = React.useState("");
   const [date, setDate] = React.useState("");
+  const [spinItems, setSpinItems] = React.useState([""]);
   const [showNameModal, setShowNameModal] = React.useState(true);
   const [showDateModal, setShowDateModal] = React.useState(true);
   const [showConfetti, setShowConfetti] = React.useState(false);
@@ -53,6 +54,7 @@ function App() {
   const handleSubmitGift = () => {
     console.log(data);
     if (data?.length === 8) {
+      setSpinItems(data);
       setShowListGift(false);
       setShowSpinner(true);
     } else {
@@ -65,6 +67,7 @@ function App() {
     } else if (data && !data.includes(e.target.id)) {
       data.push(e.target.id);
     }
+    console.log(data);
   };
 
   useEffect(() => {
@@ -78,7 +81,7 @@ function App() {
       console.log(today, birthday);
       return today === birthday;
     };
-    if (getBirthday()) {
+    if (!showDateModal && getBirthday()) {
       setShowConfetti(true);
       setTimeout(() => {
         audioRef?.current?.play();
@@ -86,10 +89,10 @@ function App() {
     } else {
       setShowConfetti(false);
     }
-  }, [date]);
+  }, [date, showDateModal]);
 
   return (
-    <div className="App">
+    <div className="App bg-pattern bg-auto">
       {showNameModal && (
         <NameModal onName={handleName} value={name} onSubmit={handleSubmit} />
       )}
@@ -112,7 +115,7 @@ function App() {
           onSelect={handleSelect}
         />
       )}
-      {showSpinner && <SpinWheel data={data} name={name} />}
+      {showSpinner && <SpinWheel data={spinItems} name={name} />}
     </div>
   );
 }

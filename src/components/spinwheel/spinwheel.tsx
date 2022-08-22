@@ -1,5 +1,6 @@
 import React from "react";
 import Arrow from "../../assets/arrow-left-long-solid.svg";
+import Confetti from "../confetti/confetti";
 import ModalGift from "../modalGift/modalgift";
 
 interface SpinWheelProps {
@@ -65,14 +66,17 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
     setTimeout(() => {
       setSpin(false);
       setShowModal(true);
-    }, 1000);
+    }, 1300);
   };
 
   console.log(data);
   return (
     <>
       <div className="flex h-screen w-screen items-center justify-center bg-slate-900 bg-opacity-70">
-        <div className="mainbox relative h-[500px] w-[500px]" id="mainbox">
+        <div
+          className="mainbox relative h-[350px] w-[350px] lg:h-[500px] lg:w-[500px]"
+          id="mainbox"
+        >
           <div
             className={`box relative h-full w-full rotate-90 ${
               spin ? "animate-spin" : null
@@ -84,7 +88,7 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
                 className="span1 absolute inline-block h-full w-full bg-green-500"
                 style={{ clipPath: "polygon(50% 0, 0 50%, 50% 50%)" }}
               >
-                <h5 className="absolute top-[38%] right-[60%] rotate-[160deg]">
+                <h5 className="absolute top-[36%] right-[60%] rotate-[160deg]">
                   {data[0]}
                 </h5>
               </span>
@@ -92,7 +96,7 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
                 className="span2 absolute inline-block h-full w-full bg-red-500"
                 style={{ clipPath: "polygon(0 0, 0 50%, 50% 0)" }}
               >
-                <h5 className="absolute top-[20%] right-[80%] rotate-[110deg]">
+                <h5 className="absolute top-[18%] right-[74%] rotate-[114deg]">
                   {data[1]}
                 </h5>
               </span>
@@ -100,7 +104,7 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
                 className="span3 absolute inline-block h-full w-full bg-blue-500"
                 style={{ clipPath: "polygon(100% 50%, 0 50%, 50% 100%)" }}
               >
-                <h5 className="absolute top-[60%] right-[60%] rotate-[200deg]">
+                <h5 className="absolute top-[60%] right-[60%] rotate-[210deg]">
                   {data[2]}
                 </h5>
               </span>
@@ -108,7 +112,7 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
                 className="span4 absolute inline-block h-full w-full bg-orange-500"
                 style={{ clipPath: "polygon(0 50%, 50% 100%, 0 100%)" }}
               >
-                <h5 className="absolute top-[80%] right-[80%] rotate-[-120deg]">
+                <h5 className="absolute top-[75%] right-[75%] rotate-[-120deg]">
                   {data[3]}
                 </h5>
               </span>
@@ -142,7 +146,7 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
                 className="span4 absolute inline-block h-full w-full bg-violet-500"
                 style={{ clipPath: "polygon(0 50%, 50% 100%, 0 100%)" }}
               >
-                <h5 className="absolute top-[80%] right-[80%] rotate-[-120deg]">
+                <h5 className="absolute top-[72%] right-[75%] rotate-[-120deg]">
                   {data[7]}
                 </h5>
               </span>
@@ -161,7 +165,12 @@ const SpinWheel: React.FC<SpinWheelProps> = ({ data, name }) => {
           />
         </div>
       </div>
-      {showModal && <ModalGift name={name} prize={selectedItem} />}
+      {showModal && (
+        <>
+          <ModalGift name={name} prize={selectedItem} />
+          <Confetti />
+        </>
+      )}
     </>
   );
 };

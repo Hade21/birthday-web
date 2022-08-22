@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/button";
 import Input from "../input/input";
+import { motion } from "framer-motion";
 
 interface NameModalProps {
   onName: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,12 +10,17 @@ interface NameModalProps {
 }
 const NameModal: React.FC<NameModalProps> = ({ onName, value, onSubmit }) => {
   return (
-    <div className="fixed flex h-screen w-screen items-center justify-center bg-slate-900 bg-opacity-70">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed flex h-screen w-screen items-center justify-center bg-slate-900 bg-opacity-70"
+    >
       <form
-        className="flex h-1/3 w-1/3 flex-col justify-center gap-4 rounded-md border border-slate-200 bg-white p-4 font-rubik"
+        className="flex h-fit w-5/6 flex-col justify-center gap-4 rounded-md border border-slate-200 bg-white p-4 font-rubik lg:h-1/3 lg:w-1/3"
         onSubmit={onSubmit}
       >
-        <div className="form-group">
+        <div className="form-group px-4">
           <Input
             id="name"
             type="text"
@@ -27,7 +33,7 @@ const NameModal: React.FC<NameModalProps> = ({ onName, value, onSubmit }) => {
           <Button type="submit">Simpan</Button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

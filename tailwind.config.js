@@ -9,6 +9,7 @@ module.exports = {
       },
       backgroundImage: {
         arrow: "url('./assets/arrow-down-solid.svg')",
+        pattern: "url('./assets/hollowed-boxes.svg')",
       },
       animation: {
         spin: "spin 1s ease-in-out infinite",

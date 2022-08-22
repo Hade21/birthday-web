@@ -16,7 +16,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     <div className="mx-auto flex w-5/6 items-center justify-between rounded-md border-2 bg-slate-200 px-3 py-1 outline-none ring-slate-800">
       <label
         htmlFor={id}
-        className="w-full text-left font-rubik text-lg text-slate-800"
+        className="w-full text-left font-rubik text-base text-slate-800 lg:text-lg"
       >
         {children}
       </label>
