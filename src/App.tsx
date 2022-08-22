@@ -25,6 +25,7 @@ function App() {
   ];
   let data: string[] = [];
   const [name, setName] = React.useState("");
+  const [age, setAge] = React.useState(0);
   const [date, setDate] = React.useState("");
   const [spinItems, setSpinItems] = React.useState([""]);
   const [showNameModal, setShowNameModal] = React.useState(true);
@@ -78,7 +79,9 @@ function App() {
       const birthday = `${String(date.split("-")[1])}-${String(
         date.split("-")[2]
       )}`;
-      console.log(today, birthday);
+      const ageNow = new Date().getFullYear() - Number(date.split("-")[0]);
+      if (ageNow) setAge(ageNow);
+
       return today === birthday;
     };
     if (!showDateModal && getBirthday()) {
@@ -106,7 +109,12 @@ function App() {
         id="audio"
       ></audio>
       {!showNameModal && !showDateModal && showConfetti && (
-        <BirthdayCard name={name} date={date} onClick={handleChooseGift} />
+        <BirthdayCard
+          name={name}
+          date={new Date().toLocaleDateString()}
+          age={age}
+          onClick={handleChooseGift}
+        />
       )}
       {showListGift && (
         <ListGift

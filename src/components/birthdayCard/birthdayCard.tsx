@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 interface IProps {
   name: string;
   date: string;
+  age: number;
   onClick: () => void;
 }
-const BirthdayCard: React.FC<IProps> = ({ name, date, onClick }) => {
+const BirthdayCard: React.FC<IProps> = ({ name, date, age, onClick }) => {
   const [showButton, setShowButton] = React.useState(false);
 
   useEffect(() => {
@@ -32,6 +33,13 @@ const BirthdayCard: React.FC<IProps> = ({ name, date, onClick }) => {
           <span className="font-lovers-quarrel text-5xl font-extrabold lg:text-6xl">
             Happy Birthday On {date.split("-").reverse().join("-")}
           </span>
+          {"  "}
+          for{"  "}
+          <span className="font-lovers-quarrel text-5xl font-extrabold lg:text-6xl">
+            {age}
+          </span>
+          {"  "}
+          Years Old
         </h1>
         {showButton && (
           <motion.div
